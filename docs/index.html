@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+Copyright 2024-2025 Yu Hongbo <yuhongbo@member.fsf.org>, 
+  CNOCTAVE <cnoctave@qq.com>
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without any warranty.
+-->
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+    <meta name="theme-color" content="#00B4FF">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="msapplication-TileImage" content="favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="apple-mobile-web-app-title" content="octave_php_wrapper文档">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" type="text/css">
+    <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@^4.0.0/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/quasar@2.17.0/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+    <link href="main.css" rel="stylesheet" type="text/css">
+    <title>octave_php_wrapper文档</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="title" content="octave_php_wrapper文档" data-qmeta="title">
+    <meta property="og:title" content="octave_php_wrapper文档" data-qmeta="ogTitle">
+    <meta name="twitter:title" content="octave_php_wrapper文档" data-qmeta="twitterTitle">
+    <meta name="description" content="Octave中文网是一个面向中文Octave开发者的交流平台，拥有中文Octave文档、中文Octave论坛和中文Octave新闻等特色。"
+        data-qmeta="description">
+    <meta property="og:description" content="Octave中文网是一个面向中文Octave开发者的交流平台，拥有中文Octave文档、中文Octave论坛和中文Octave新闻等特色。"
+        data-qmeta="ogDesc">
+    <meta name="twitter:description" content="Octave中文网是一个面向中文Octave开发者的交流平台，拥有中文Octave文档、中文Octave论坛和中文Octave新闻等特色。"
+        data-qmeta="twitterDesc">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+
+<body>
+    <div id="q-app">
+        <q-layout view="hHh LpR fFf">
+            <q-header elevated class="bg-primary text-white">
+                <q-toolbar class="bg-primary text-white q-ny-md shadow-2">
+                    <q-btn stretch flat label="Octave中文网" @click="goTo('http://cnoctave.cn')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="octave_php_wrapper文档" @click="scrollToTop()"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-space></q-space>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn-dropdown stretch flat icon="translate" label="切换文档语言">
+                      <q-list>
+                        <q-item clickable v-close-popup @click="goTo('index.html')">
+                          <q-item-section>
+                            <q-item-label>zh-CN 简体中文</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-btn-dropdown>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="中文版Octave文档" @click="goTo('http://docs.cnoctave.cn')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="学术交流论坛" @click="goTo('http://forum.cnoctave.cn')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="新闻" @click="goTo('https://octave.org/news.html')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="使用方法" @click="goTo('https://wiki.octave.org/Using_Octave')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="免费下载" @click="goTo('https://octave.org/download')"></q-btn>
+                </q-toolbar>
+            </q-header>
+            <q-drawer class="bg-primary" show-if-above v-model="leftDrawerOpen" side="left" bordered elevated>
+                <q-list class="title1 text-white bg-primary">
+                    <q-item clickable v-ripple @click="goToID('#homepage')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            项目首页
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#repo_install')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            软件源安装
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#online_install')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            在线安装
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#source_code_install')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            源码安装
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#how_to_use')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            如何使用
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#dependencies')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            依赖库
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#function_usage')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            函数用法
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#common_examples')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            常见用例
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#use_php_pass_args')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            用PHP传参
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#php_supported_request_methods')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            PHP支持的请求方法
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#use_json_pass_args')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            用JSON传参
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#use_base64_pass_args')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            用Base64传参
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#php_upload_file')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            PHP上传文件
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#php_download_file')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            PHP下载文件
+                        </q-item-section>
+                    </q-item>
+                    <q-item clickable v-ripple @click="goToID('#references')">
+                        <q-item-section avatar>
+                            <q-icon name="help" />
+                        </q-item-section>
+                        <q-item-section>
+                            引用octave_php_wrapper
+                        </q-item-section>
+                    </q-item>
+                </q-list>
+            </q-drawer>
+
+            <q-page-container>
+                <div style="position: relative;">
+                    <q-img src="banner0.png" spinner-color="white" style="width: 100%; height: 300px;"></q-img>
+                    <div class="q-mx-md rainbow-text"
+                        style="line-height: 300px; font-size: 100px; position: absolute; left: 0%; top: 0%;">octave_php_wrapper文档
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="main">
+                        <div class="text-h5 q-ma-md text-red-10">欢迎广大开发者将此文档翻译为其他语言。</div>
+                        <q-btn id="homepage" class="title1 text-white bg-primary" stretch flat
+                            label="项目首页：https://github.com/CNOCTAVE/octave_php_wrapper" @click="goTo('https://github.com/CNOCTAVE/octave_php_wrapper')"></q-btn>
+                        <q-separator></q-separator>
+                        <div id="repo_install" class="title1 q-ma-md text-primary">软件源安装</div>
+                        <p class="q-ma-md">octave_php_wrapper可以通过Octave软件源安装。</p>
+                        <div class="text-h5 q-ma-md text-red-10">通过Octave软件源安装octave_php_wrapper，代码如下：</div>
+                        <p class="q-ma-md">>> pkg install -forge octave_php_wrapper</p>
+                        <q-separator></q-separator>
+                        <div id="online_install" class="title1 q-ma-md text-primary">在线安装</div>
+                        <p class="q-ma-md">octave_php_wrapper可以在线安装。</p>
+                        <div class="text-h5 q-ma-md text-red-10">在线安装octave_php_wrapper，代码如下：</div>
+                        <p class="q-ma-md">>> pkg install 'https://github.com/CNOCTAVE/octave_php_wrapper/releases/download/1.0.0/octave_php_wrapper.tar.gz'</p>
+                        <q-separator></q-separator>
+                        <div id="source_code_install" class="title1 q-ma-md text-primary">源码安装</div>
+                        <p class="q-ma-md">octave_php_wrapper可以直接使用tar包安装。</p>
+                        <div class="text-h5 q-ma-md text-red-10">
+                            假设你下载的源码包名为octave_php_wrapper.tar.gz，源码安装的代码如下：</div>
+                        <p class="q-ma-md">>> pkg install octave_php_wrapper.tar.gz -local</p>
+                        <q-separator></q-separator>
+                        <div id="how_to_use" class="title1 q-ma-md text-primary">如何使用</div>
+                        <div class="text-h5 q-ma-md text-red-10">在安装后，加载octave_php_wrapper即可使用，代码如下：</div>
+                        <p class="q-ma-md">>> pkg load octave_php_wrapper</p>
+                        <q-separator></q-separator>
+                        <div id="dependencies" class="title1 q-ma-md text-primary">依赖库</div>
+                        <div class="text-h5 q-ma-md text-red-10">不同的Linux发行版有不同的依赖库名。</div>
+                        <div class="text-h5 q-ma-md text-red-10">Fedora：</div>
+                        <p class="q-ma-md">$ sudo dnf install php octave-cli</p>
+                        <div class="text-h5 q-ma-md text-red-10">在其他的Linux发行版上的命令有所不同。欢迎广大开发者补充。
+                        </div>
+                        <q-separator></q-separator>
+                        <div id="function_usage" class="title1 q-ma-md text-primary">函数用法</div>
+                        <div class="text-h5 q-ma-md text-red-10">create_php_wrapper</div>
+                        <p class="q-ma-md">Loadable Function: php_wrapper_string = create_php_wrapper (FILENAME, FILE_PATH='',</p>
+                        <p class="q-ma-md">FORCE_OVERWRITE=false)</p>
+                        <p class="q-ma-md">输入Octave脚本名FILENAME，生成可以运行Octave脚本的PHP文件。</p>
+                        <p class="q-ma-md">返回PHP代码字符串。</p>
+                        <p class="q-ma-md">可选参数FILE_PATH，如果不为空字符串，则用chdir()函数切换到对应目录之下。</p>
+                        <p class="q-ma-md">可选参数FORCE_OVERWRITE，如果为false，则在PHP文件已经存在的情况下报错；</p>
+                        <p class="q-ma-md">如果为true，则在PHP文件已经存在的情况下强制写入。</p>
+                        <q-separator></q-separator>
+                        <div class="text-h5 q-ma-md text-red-10">gen_php_wrapper_string</div>
+                        <p class="q-ma-md">Loadable Function: php_wrapper_string = gen_php_wrapper_string (FILENAME)</p>
+                        <p class="q-ma-md">输入Octave脚本名FILENAME，返回PHP代码字符串。</p>
+                        <q-separator></q-separator>
+                        <div class="text-h5 q-ma-md text-red-10">octave_php_wrapper_examples</div>
+                        <p class="q-ma-md">Loadable Function: octave_php_wrapper_example_string = octave_php_wrapper_examples (NAME)</p>
+                        <p class="q-ma-md">获取octave_php_wrapper的用例。</p>
+                        <p class="q-ma-md">支持的用例如下：</p>
+                        <p class="q-ma-md">pass_args_get | GET方法传参</p>
+                        <p class="q-ma-md">pass_args_post | POST方法传参</p>
+                        <p class="q-ma-md">pass_args_put | PUT方法传参</p>
+                        <p class="q-ma-md">pass_args_patch | PATCH方法传参</p>
+                        <p class="q-ma-md">pass_args_delete | DELETE方法传参</p>
+                        <p class="q-ma-md">jsondecode | 将JSON字符串解析为Octave数据</p>
+                        <p class="q-ma-md">jsonencode | 将Octave数据序列化为JSON字符串</p>
+                        <p class="q-ma-md">base64_decode | 将Base64字符串解析为Octave数据</p>
+                        <p class="q-ma-md">base64_encode | 将Octave数据序列化为Base64字符串</p>
+                        <p class="q-ma-md">upload_file | PHP上传文件</p>
+                        <p class="q-ma-md">download_file | PHP下载文件</p>
+                        <q-separator></q-separator>
+                        <div id="common_examples" class="title1 q-ma-md text-primary">常见用例</div>
+                        <div class="text-h5 q-ma-md text-red-10">假如你有一个Octave脚本 add1to10.m，代码如下：</div>
+                        <pre><code class="matlab">sum = 0;
+for (i=linspace(1, 10))
+    sum += i;
+endfor
+disp(sum);</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">生成可以运行Octave脚本的PHP文件，代码如下：</div>
+                        <pre><code class="matlab">>> create_php_wrapper("add1to10.m")
+ans = &lt;?php
+ob_start();
+system('octave-cli add1to10.m');
+$output = ob_get_clean();
+echo $output;
+?&gt;</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">此时已经在add1to10.m的相同目录中生成了新的PHP文件，名为add1to10.m.php。这个PHP文件中的代码如下：</div>
+                        <pre><code class="php">&lt;?php
+ob_start();
+system('octave-cli add1to10.m');
+$output = ob_get_clean();
+echo $output;
+?&gt;</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">此时你可以用PHP运行Octave。<i style="font-weight: 1000;">你可能需要微调这个生成的PHP文件。后文有大量相关内容。</i></div>
+                        <div class="text-h5 q-ma-md text-red-10">用PHP CLI运行Octave脚本。代码如下：</div>
+                        <pre><code class="shell">$ php add1to10.m.php
+55</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">因为有PHP，所以你可以通过浏览器运行Octave脚本，或者将Octave脚本作为RESTFul API来使用，就像现代互联网服务一样。假如你的网址为http://cnoctave.cn，你的服务器站点根目录为/var/www，你的Octave脚本的路径为/var/www/add1to10.m，你的PHP文件的路径为/var/www/add1to10.m.php，那么网址如下：</div>
+                        <p class="q-ma-md">http://cnoctave.cn/add1to10.m.php</p>
+                        <q-separator></q-separator>
+                        <div id="use_php_pass_args" class="title1 q-ma-md text-primary">用PHP传参</div>
+                        <div class="text-h5 q-ma-md text-red-10">假如你有一个Octave脚本 add1ton.m，代码如下：</div>
+                        <pre><code class="matlab">args = argv();
+n = args(1);
+sum = 0;
+for (i=linspace(1, str2num(n)))
+    sum += i;
+endfor
+disp(sum);</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">那么用PHP文件、GET方法传参的代码如下：</div>
+                        <pre><code class="php">&lt;?php
+if (isset($_GET['n'])) {
+    $n = $_GET['n'];
+    ob_start();
+    system('octave-cli add1to10.m' . ' ' . escapeshellarg($n));
+    $output = ob_get_clean();
+    echo $output;
+} else {
+    echo "Param n should not be null.";
+}
+?&gt;</code></pre>
+                        <q-separator></q-separator>
+                        <div id="php_supported_request_methods" class="title1 q-ma-md text-primary">PHP支持的请求方法</div>
+                        <div class="text-h5 q-ma-md text-red-10">GET方法传参，代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("pass_args_get")</p>
+                        <pre><code class="php">&lt;?php
+if (isset($_GET['n'])) {
+    $n = $_GET['n'];
+    echo escapeshellarg($n);
+} else {
+    echo "Param n should not be null.";
+}
+?&gt;</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">POST方法传参，代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("pass_args_post")</p>
+                        <pre><code class="php">&lt;?php
+if (isset($_POST['n'])) {
+    $n = $_POST['n'];
+    echo escapeshellarg($n);
+} else {
+    echo "Param n should not be null.";
+}
+?&gt;</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">PUT方法传参，代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("pass_args_put")</p>
+                        <pre><code class="php">&lt;?php
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    $n = file_get_contents('php://input');
+    echo escapeshellarg($n);
+} else {
+    echo "This script only handles PUT requests.";
+}
+?&gt;</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">PATCH方法传参，代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("pass_args_patch")</p>
+                        <pre><code class="php">&lt;?php
+if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+    $n = file_get_contents('php://input');
+    echo escapeshellarg($n);
+} else {
+    echo "This script only handles PATCH requests.";
+}
+?&gt;</code></pre>
+                        <div class="text-h5 q-ma-md text-red-10">DELETE方法传参，代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("pass_args_delete")</p>
+                        <pre><code class="php">&lt;?php
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    parse_str($_SERVER['QUERY_STRING'], $queryParams);
+    
+    if (isset($queryParams['n'])) {
+        $n = $queryParams['n'];
+        echo escapeshellarg($n);
+    } else {
+        echo "Param n should not be null.";
+    }
+} else {
+    echo "This script only handles DELETE requests.";
+}
+?&gt;</code></pre>
+                        <q-separator></q-separator>
+                        <div id="use_json_pass_args" class="title1 q-ma-md text-primary">用JSON传参</div>
+                        <div class="text-h5 q-ma-md text-red-10">使用Octave内置的jsondecode()函数可以将JSON字符串解析为Octave数据，详见：</div>
+                        <p class="q-ma-md">https://docs.octave.org/latest/JSON-data-encoding_002fdecoding.html</p>
+                        <div class="text-h5 q-ma-md text-red-10">假如你的Octave脚本 matrix_sum_json.m 需要传入一个矩阵（例如[1,2,3,4,5,6,7]），那么可以写成代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("jsondecode")</p>
+                        <pre><code class="matlab">args = argv();
+n = jsondecode(args(1));
+disp(sum(n));</code></pre>
+                        <p class="q-ma-md">其中，[1,2,3,4,5,6,7]对应的JSON字符串是"[1,2,3,4,5,6,7]"。</p>
+                        <div class="text-h5 q-ma-md text-red-10">使用Octave内置的jsonencode()函数可以将Octave数据序列化为JSON字符串，详见：</div>
+                        <p class="q-ma-md">https://docs.octave.org/latest/JSON-data-encoding_002fdecoding.html</p>
+                        <div class="text-h5 q-ma-md text-red-10">假如你的Octave脚本 return_matrix_json.m 需要返回一个矩阵（例如[1,2,3,4,5,6,7]），那么可以写成代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("jsonencode")</p>
+                        <pre><code class="matlab">n = [1,2,3,4,5,6,7];
+disp(jsonencode(n));</code></pre>
+                        <p class="q-ma-md">其中，[1,2,3,4,5,6,7]对应的JSON字符串是"[1,2,3,4,5,6,7]"。</p>
+                        <q-separator></q-separator>
+                        <q-separator></q-separator>
+                        <div id="use_base64_pass_args" class="title1 q-ma-md text-primary">用Base64传参</div>
+                        <div class="text-h5 q-ma-md text-red-10">使用Octave内置的base64_decode()函数可以将Base64字符串解析为Octave数据，详见：</div>
+                        <p class="q-ma-md">https://docs.octave.org/latest/Base64-and-Binary-Data-Transmission.html</p>
+                        <div class="text-h5 q-ma-md text-red-10">假如你的Octave脚本 matrix_sum_base64.m 需要传入一个矩阵（例如[1,2,3,4,5,6,7]），那么可以写成代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("base64_decode")</p>
+                        <pre><code class="matlab">args = argv();
+n = base64_decode(args(1));
+disp(sum(n));</code></pre>
+                        <p class="q-ma-md">其中，[1,2,3,4,5,6,7]对应的Base64字符串是"AAAAAAAA8D8AAAAAAAAAQAAAAAAAAAhAAAAAAAAAEEAAAAAAAAAUQAAAAAAAABhAAAAAAAAAHEA="。</p>
+                        <div class="text-h5 q-ma-md text-red-10">使用Octave内置的base64_encode()函数可以将Octave数据序列化为Base64字符串，详见：</div>
+                        <p class="q-ma-md">https://docs.octave.org/latest/Base64-and-Binary-Data-Transmission.html</p>
+                        <div class="text-h5 q-ma-md text-red-10">假如你的Octave脚本 return_matrix_base64.m 需要返回一个矩阵（例如[1,2,3,4,5,6,7]），那么可以写成代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("base64_encode")</p>
+                        <pre><code class="matlab">n = [1,2,3,4,5,6,7];
+disp(base64_encode(n));</code></pre>
+                        <p class="q-ma-md">其中，[1,2,3,4,5,6,7]对应的Base64字符串是"AAAAAAAA8D8AAAAAAAAAQAAAAAAAAAhAAAAAAAAAEEAAAAAAAAAUQAAAAAAAABhAAAAAAAAAHEA="。</p>
+                        <div id="php_upload_file" class="title1 q-ma-md text-primary">PHP上传文件</div>
+                        <div class="text-h5 q-ma-md text-red-10">PHP可以上传文件，然后由Octave进一步处理。PHP上传文件的代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("upload_file")</p>
+                        <pre><code class="php">&lt;?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] == UPLOAD_ERR_OK) {
+    $fileTmpPath = $_FILES['fileToUpload']['tmp_name'];
+    $fileName = $_FILES['fileToUpload']['name'];
+    $fileSize = $_FILES['fileToUpload']['size'];
+    $fileType = $_FILES['fileToUpload']['type'];
+    $fileNameCmps = explode(".", $fileName);
+    $fileExtension = strtolower(end($fileNameCmps));
+    $allowedfileExtensions = array('jpg', 'jpeg', 'png', 'gif');
+    if (in_array($fileExtension, $allowedfileExtensions)) {
+        $uploadFileDir = 'uploads/';
+        if (!is_dir($uploadFileDir)) {
+            mkdir($uploadFileDir, 0777, true);
+        }
+        $dest_path = $uploadFileDir . $fileName;
+        if(move_uploaded_file($fileTmpPath, $dest_path)) {
+            echo "File is valid and was successfully uploaded.\n";
+        } else {
+            echo "There was some error moving the file to upload directory. Please make sure the upload directory is writable.";
+        }
+    } else {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    }
+} else {
+    echo "No file was uploaded. Sorry, your file was not uploaded.";
+}
+?&gt;</code></pre>
+                        <p class="q-ma-md">其中，$dest_path是PHP上传文件并保存的路径。Octave脚本获取这个参数即可继续处理文件。</p>
+                        <q-separator></q-separator>
+                        <div id="php_download_file" class="title1 q-ma-md text-primary">PHP下载文件</div>
+                        <div class="text-h5 q-ma-md text-red-10">PHP可以下载文件，代码如下：</div>
+                        <p class="q-ma-md">>> octave_php_wrapper_examples("download_file")</p>
+                        <pre><code class="php">&lt;?php
+$filePath = 'path/to/your/file.zip';
+if (!file_exists($filePath)) {
+    die('File not found');
+}
+$fileSize = filesize($filePath);
+header('Content-Description: File Transfer');
+header('Content-Type: application/octet-stream');
+header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
+header('Content-Transfer-Encoding: binary');
+header('Expires: 0');
+header('Cache-Control: must-revalidate');
+header('Pragma: public');
+header('Content-Length: ' . $fileSize);
+ob_clean();
+flush();
+readfile($filePath);
+exit;
+?&gt;</code></pre>
+                        <p class="q-ma-md">其中，$filePath是PHP下载文件的路径。</p>
+
+                        <q-separator></q-separator>
+                        <div id="references" class="title1 q-ma-md text-primary">引用octave_php_wrapper</div>
+                        <div class="text-h5 q-ma-md text-red-10">如果你在学术研究中涉及octave_php_wrapper，那么可以按需引用以下内容。</div>
+                        <div class="text-h5 q-ma-md text-red-10">octave_php_wrapper源码(BibTeX)</div>
+                        <p class="q-ma-md">@misc{CNOCTAVE2025,
+                            author = {Yu Hongbo, },
+                            title = {octave_php_wrapper},
+                            year = {2025},
+                            howpublished = {\url{https://github.com/CNOCTAVE/octave_php_wrapper}},
+                          }</p>
+                        <div class="text-h5 q-ma-md text-red-10">octave_php_wrapper文档(BibTeX)</div>
+                        <p class="q-ma-md">@techreport{CNOCTAVE2025,
+                            author = {Yu Hongbo, },
+                            title = {octave_php_wrapper Document},
+                            institution = {BA DU XIN SHANG},
+                            year = {2025},
+                            number = {16},
+                            month = {5},
+                            url = {https://cnoctave.github.io/octave_php_wrapper/index.html},
+                            urldate = {2025-05-16},
+                          }</p>
+                    </div>
+                </div>
+                <q-toolbar class="bg-grey-8 text-white q-my-md shadow-2">
+                    <q-btn-dropdown stretch flat label="版权所有 ©">
+                      <q-list>
+                        <q-item clickable v-close-popup @click="goTo('http://cnoctave.cn')">
+                          <q-item-section>
+                            <q-item-label>© 2024-2025 CNOCTAVE</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                        <q-item clickable v-close-popup @click="goTo('https://orcid.org/0009-0007-9436-4161')">
+                          <q-item-section>
+                            <q-item-label>© 2024-2025 Yu Hongbo</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-btn-dropdown>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="此文档受Creative Commons Attribution-NoDerivatives 4.0 International License协议保护。" 
+                    @click="goTo('https://creativecommons.org/licenses/by-nd/4.0/')"></q-btn>
+                    <q-separator dark vertical></q-separator>
+                    <q-btn stretch flat label="下载此文档的源码" 
+                    @click="goTo('https://github.com/CNOCTAVE/octave_php_wrapper')"></q-btn>
+                </q-toolbar>
+            </q-page-container>
+
+        </q-layout>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.17.0/dist/quasar.umd.prod.js"></script>
+    <script>
+
+        const App = {
+            data() {
+                return {
+                    scrollToTop() {
+                        window.scrollTo(0, 0);
+                    },
+                    goTo(target) {
+                        window.open(target, '_blank');
+                    },
+                    goToID(target) {
+                        window.open(target, '_self');
+                    },
+                    leftDrawerOpen: true,
+                };
+            },
+        };
+        const app = Vue.createApp(App);
+
+        app.use(Quasar)
+        app.mount('#q-app')
+    </script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</body>
+
+</html>

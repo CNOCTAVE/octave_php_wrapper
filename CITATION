@@ -1,0 +1,7 @@
+引用octave_php_wrapper
+如果你在学术研究中涉及octave_php_wrapper，那么可以按需引用以下内容。
+octave_php_wrapper源码(BibTeX)
+@misc{CNOCTAVE2025, author = {Yu Hongbo, }, title = {octave_php_wrapper}, year = {2025}, howpublished = {\url{https://github.com/CNOCTAVE/octave_php_wrapper}}, }
+
+octave_php_wrapper文档(BibTeX)
+@techreport{CNOCTAVE2025, author = {Yu Hongbo, }, title = {octave_php_wrapper Document}, institution = {BA DU XIN SHANG}, year = {2025}, number = {16}, month = {5}, url = {https://cnoctave.github.io/octave_php_wrapper/index.html}, urldate = {2025-05-16}, }

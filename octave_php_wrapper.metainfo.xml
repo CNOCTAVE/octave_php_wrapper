@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2024-2025 Yu Hongbo <yuhongbo@member.fsf.org>, 
+  CNOCTAVE <cnoctave@qq.com>
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.  This file is offered as-is,
+without any warranty.
+-->
+<component type="addon">
+  <id>octave_php_wrapper</id>
+  <extends>www.octave.org-octave.desktop</extends>
+  <name>octave_php_wrapper</name>
+  <summary>Create a PHP wrapper</summary>
+  <description>
+    <p>The octave_php_wrapper package creates a PHP wrapper for Octave 
+      script, so that you can run the Octave script by PHP, 
+      like modern Internet service.</p>
+  </description>
+    <keywords>
+    <keyword>PHP</keyword>
+    <keyword>wrapper</keyword>
+  </keywords>
+  <url type="homepage">https://github.com/CNOCTAVE/octave_php_wrapper</url>
+  <url type="bugtracker">https://github.com/CNOCTAVE/octave_php_wrapper/issues</url>
+  <url type="document">https://cnoctave.github.io/octave_php_wrapper/index.html</url>
+  <project_license>GPL-3.0+</project_license>
+  <developer_name>various authors</developer_name>
+  <update_contact>cnoctave@qq.com</update_contact>
+  <metadata_license>FSFAP</metadata_license>
+</component>
