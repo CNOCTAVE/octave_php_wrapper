@@ -1,5 +1,7 @@
 # octave_php_wrapper
- The octave_php_wrapper package provides functions depending on ffmpeg-free.
+ The octave_php_wrapper package creates a PHP wrapper for Octave 
+ script, so that you can run the Octave script by PHP, 
+ like modern Internet service.
 # octave_php_wrapper Document
  Check out document: [octave_php_wrapper Document](https://cnoctave.github.io/octave_php_wrapper/index.html)
 # How to translate octave_php_wrapper Document into another language
