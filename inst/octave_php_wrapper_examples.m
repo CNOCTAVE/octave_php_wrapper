@@ -57,26 +57,130 @@ function octave_php_wrapper_example_string = octave_php_wrapper_examples(name)
             "?>",
         };
     elseif strcmp(name, "pass_args_post") == 1
-        octave_php_wrapper_example_string = pass_args_post();
+        text_cell = {
+            "<?php",
+            "if (isset($_POST['n'])) {",
+            "    $n = $_POST['n'];",
+            "    echo escapeshellarg($n);",
+            "} else {",
+            "    echo \"Param n should not be null.\";",
+            "}",
+            "?>",
+        };
     elseif strcmp(name, "pass_args_put") == 1
-        octave_php_wrapper_example_string = pass_args_put();
+        text_cell = {
+            "<?php",
+            "if ($_SERVER['REQUEST_METHOD'] === 'PUT') {",
+            "    $n = file_get_contents('php://input');",
+            "    echo escapeshellarg($n);",
+            "} else {",
+            "    echo \"This script only handles PUT requests.\";",
+            "}",
+            "?>",
+        };
     elseif strcmp(name, "pass_args_patch") == 1
-        octave_php_wrapper_example_string = pass_args_patch();
+        text_cell = {
+            "<?php",
+            "if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {",
+            "    $n = file_get_contents('php://input');",
+            "    echo escapeshellarg($n);",
+            "} else {",
+            "    echo \"This script only handles PATCH requests.\";",
+            "}",
+            "?>",
+        };
     elseif strcmp(name, "pass_args_delete") == 1
-        octave_php_wrapper_example_string = pass_args_delete();
+        text_cell = {
+            "<?php",
+            "if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {",
+            "    parse_str($_SERVER['QUERY_STRING'], $queryParams);",
+            "    if (isset($queryParams['n'])) {",
+            "        $n = $queryParams['n'];",
+            "        echo escapeshellarg($n);",
+            "} else {",
+            "        echo \"Param n should not be null.\";",
+            "    }",
+            "} else {",
+            "    echo \"This script only handles DELETE requests.\";",
+            "}",
+            "?>",
+        };
     elseif strcmp(name, "jsondecode") == 1
-        octave_php_wrapper_example_string = jsondecode();
+        text_cell = {
+            "args = argv();",
+            "n = jsondecode(args(1));",
+            "disp(sum(n));",
+        };
     elseif strcmp(name, "jsonencode") == 1
-        octave_php_wrapper_example_string = jsonencode();
+        text_cell = {
+            "n = [1,2,3,4,5,6,7];",
+            "disp(jsonencode(n));",
+        };
     elseif strcmp(name, "base64_decode") == 1
-        octave_php_wrapper_example_string = base64_decode();
+        text_cell = {
+            "args = argv();",
+            "n = base64_decode(args(1));",
+            "disp(sum(n));",
+        };
     elseif strcmp(name, "base64_encode") == 1
-        octave_php_wrapper_example_string = base64_encode();
+        text_cell = {
+            "n = [1,2,3,4,5,6,7];",
+            "disp(base64_encode(n));",
+        };
     elseif strcmp(name, "upload_file") == 1
-        octave_php_wrapper_example_string = upload_file();
+        text_cell = {
+            "<?php",
+            "if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['fileToUpload']) && $_FILES['fileToUpload']['error'] == UPLOAD_ERR_OK) {",
+            "    $fileTmpPath = $_FILES['fileToUpload']['tmp_name'];",
+            "    $fileName = $_FILES['fileToUpload']['name'];",
+            "    $fileSize = $_FILES['fileToUpload']['size'];",
+            "    $fileType = $_FILES['fileToUpload']['type'];",
+            "    $fileNameCmps = explode(\".\", $fileName);",
+            "    $fileExtension = strtolower(end($fileNameCmps));",
+            "    $allowedfileExtensions = array('jpg', 'jpeg', 'png', 'gif');",
+            "    if (in_array($fileExtension, $allowedfileExtensions)) {",
+            "        $uploadFileDir = 'uploads/';",
+            "        if (!is_dir($uploadFileDir)) {",
+            "            mkdir($uploadFileDir, 0777, true);",
+            "        }",
+            "        $dest_path = $uploadFileDir . $fileName;",
+            "        if(move_uploaded_file($fileTmpPath, $dest_path)) {",
+            "            echo \"File is valid and was successfully uploaded.\n\";",
+            "        } else {",
+            "            echo \"There was some error moving the file to upload directory. Please make sure the upload directory is writable.\";",
+            "        }",
+            "    } else {",
+            "        echo \"Sorry, only JPG, JPEG, PNG & GIF files are allowed.\";",
+            "    }",
+            "} else {",
+            "    echo \"No file was uploaded. Sorry, your file was not uploaded.\";",
+            "}",
+            "?>",
+        };
     elseif strcmp(name, "download_file") == 1
-        octave_php_wrapper_example_string = download_file();
+        text_cell = {
+            "<?php",
+            "$filePath = 'path/to/your/file.zip';",
+            "if (!file_exists($filePath)) {",
+            "    die('File not found');",
+            "}",
+            "$fileSize = filesize($filePath);",
+            "header('Content-Description: File Transfer');",
+            "header('Content-Type: application/octet-stream');",
+            "header('Content-Disposition: attachment; filename=\"' . basename($filePath) . '\"');",
+            "header('Content-Transfer-Encoding: binary');",
+            "header('Expires: 0');",
+            "header('Cache-Control: must-revalidate');",
+            "header('Pragma: public');",
+            "header('Content-Length: ' . $fileSize);",
+            "ob_clean();",
+            "flush();",
+            "readfile($filePath);",
+            "exit;",
+            "?>",
+        };
     else
         error('name must be one of the supported examples.');
+    endif
     octave_php_wrapper_example_string = strjoin(text_cell, "\n");
 endfunction
