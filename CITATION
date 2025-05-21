@@ -5,3 +5,14 @@ octave_php_wrapper源码(BibTeX)
 
 octave_php_wrapper文档(BibTeX)
 @techreport{CNOCTAVE2025, author = {Yu Hongbo, }, title = {octave_php_wrapper Document}, institution = {BA DU XIN SHANG}, year = {2025}, number = {16}, month = {5}, url = {https://cnoctave.github.io/octave_php_wrapper/index.html}, urldate = {2025-05-16}, }
+
+octave_php_wrapper: Bridge the Gap Between GNU Octave and Modern Internet Service(BibTeX)
+@article{https://engrxiv.org/preprint/view/4639,
+        doi = {10.31224/4639},
+        url = {https://engrxiv.org/preprint/view/4639},
+        author = {Yu Hongbo, },
+        keywords = {Octave, GNU, PHP, Wrapper, Numerical Computations, Web Applications},
+        title = {octave_php_wrapper: Bridge the Gap Between GNU Octave and Modern Internet Service},
+        publisher = {engrxiv},
+        year = {2025},
+        copyright = {Creative Commons Attribution 4.0 International}
